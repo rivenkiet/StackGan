@@ -640,7 +640,7 @@ class StackGanStage2(object):
 	class_id_path_train = train_dir + "/class_info.pickle"
 	class_id_path_test = test_dir + "/class_info.pickle"
 	dataset_path = "./content/drive/birds_implementation/CUB_200_2011"
-	def __init__(self, epochs=20, z_dim=100, batch_size=100, enable_function=True, stage2_generator_lr=0.0002, stage2_discriminator_lr=0.0002):
+	def __init__(self, epochs=20, z_dim=100, batch_size=50, enable_function=True, stage2_generator_lr=0.0002, stage2_discriminator_lr=0.0002):
 		self.epochs = epochs
 		self.z_dim = z_dim
 		self.enable_function = enable_function
