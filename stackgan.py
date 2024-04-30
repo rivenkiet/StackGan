@@ -450,8 +450,8 @@ class StackGanStage1(object):
 	  self.stage1_discriminator.save_weights("./content/drive/weights/stage1_disc.h5")
 
 stage1 = StackGanStage1()
-stage1.train_stage1()
-del stage1
+#stage1.train_stage1()
+#del stage1
 
 def concat_along_dims(inputs):
 	"""Joins the conditioned text with the encoded image along the dimensions.
