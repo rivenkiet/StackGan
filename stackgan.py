@@ -656,20 +656,26 @@ class StackGanStage2(object):
 		self.stage1_generator = build_stage1_generator()
 		self.stage1_generator.compile(loss='binary_crossentropy', optimizer=self.stage2_generator_optimizer)
 		self.stage1_generator.load_weights('./content/drive/weights/stage1_gen.h5')
+		
 		self.stage2_generator = build_stage2_generator()
 		self.stage2_generator.compile(loss='binary_crossentropy', optimizer=self.stage2_generator_optimizer)
-
+		self.stage2_generator.load_weights('./content/drive/weights/stage2_gen.h5')
+		
 		self.stage2_discriminator = build_stage2_discriminator()
 		self.stage2_discriminator.compile(loss='binary_crossentropy', optimizer=self.stage2_discriminator_optimizer)
-
+		self.stage2_discriminator.load_weights('./content/drive/weights/stage2_disc.h5')
+		
 		self.ca_network = build_ca_network()
 		self.ca_network.compile(loss='binary_crossentropy', optimizer='Adam')
+		self.ca_network.load_weights('./content/drive/weights/stage2_ca.h5')
 
 		self.embedding_compressor = build_embedding_compressor()
 		self.embedding_compressor.compile(loss='binary_crossentropy', optimizer='Adam')
+		self.embedding_compressor.load_weights('./content/drive/weights/stage2_embco.h5')
 
 		self.stage2_adversarial = stage2_adversarial_network(self.stage2_discriminator, self.stage2_generator, self.stage1_generator)
 		self.stage2_adversarial.compile(loss=['binary_crossentropy', adversarial_loss], loss_weights=[1, 2.0], optimizer=self.stage2_generator_optimizer)
+		self.stage2_adversarial.load_weights('./content/drive/weights/stage2_adv.h5')
 
 		self.checkpoint2 = tf.train.Checkpoint(
         	generator_optimizer=self.stage2_generator_optimizer,
