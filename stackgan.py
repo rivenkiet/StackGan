@@ -641,7 +641,7 @@ class StackGanStage2(object):
 	class_id_path_train = train_dir + "/class_info.pickle"
 	class_id_path_test = test_dir + "/class_info.pickle"
 	dataset_path = "./content/drive/birds_implementation/CUB_200_2011"
-	def __init__(self, epochs=20, z_dim=100, batch_size=30, enable_function=True, stage2_generator_lr=0.0002, stage2_discriminator_lr=0.0002):
+	def __init__(self, epochs=20, z_dim=100, batch_size=30, enable_function=True, stage2_generator_lr=0.005, stage2_discriminator_lr=0.005):
 		self.epochs = epochs
 		self.z_dim = z_dim
 		self.enable_function = enable_function
@@ -751,7 +751,7 @@ class StackGanStage2(object):
 
 				print(f'Generator Loss: {g_loss}')
 
-				if epoch % 10 == 0:
+				if epoch % 3 == 0:
 					latent_space = np.random.normal(0, 1, size=(self.batch_size, self.z_dim))
 					embedding_batch = high_test_embeds[0 : self.batch_size]
 
@@ -761,7 +761,7 @@ class StackGanStage2(object):
 					for i, image in enumerate(high_fake_images[:10]):
 					    save_image(image, f'results_stage2/gen_{epoch}_{i}.png')
 
-				if epoch % 10 == 0:
+				if epoch % 3 == 0:
 					self.stage2_generator.save_weights('./content/drive/weights/stage2_gen.h5')
 					self.stage2_discriminator.save_weights("./content/drive/weights/stage2_disc.h5")
 					self.ca_network.save_weights('./content/drive/weights/stage2_ca.h5')
