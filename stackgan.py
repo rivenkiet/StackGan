@@ -333,7 +333,7 @@ class StackGanStage1(object):
   class_id_path_train = train_dir + "/class_info.pickle"
   class_id_path_test = test_dir + "/class_info.pickle"
   dataset_path = "./content/drive/birds_implementation/CUB_200_2011"
-  def __init__(self, epochs=20, z_dim=100, batch_size=200, enable_function=True, stage1_generator_lr=0.0002, stage1_discriminator_lr=0.0002):
+  def __init__(self, epochs=100, z_dim=100, batch_size=200, enable_function=True, stage1_generator_lr=0.0002, stage1_discriminator_lr=0.0002):
 	  self.epochs = epochs
 	  self.z_dim = z_dim
 	  self.enable_function = enable_function
@@ -450,8 +450,8 @@ class StackGanStage1(object):
 	  self.stage1_discriminator.save_weights("./content/drive/weights/stage1_disc.h5")
 
 stage1 = StackGanStage1()
-#stage1.train_stage1()
-#del stage1
+stage1.train_stage1()
+del stage1
 
 def concat_along_dims(inputs):
 	"""Joins the conditioned text with the encoded image along the dimensions.
